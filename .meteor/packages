@@ -26,3 +26,4 @@ reactive-dict
 accounts-ui
 accounts-password
 accounts-facebook
+meteortesting:mocha
