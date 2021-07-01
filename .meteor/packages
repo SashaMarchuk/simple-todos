@@ -27,3 +27,8 @@ accounts-ui
 accounts-password
 accounts-facebook
 meteortesting:mocha
+aldeed:collection2-core
+tmeasday:check-npm-versions
+ostrio:flow-router-extra
+session
+tmeasday:publish-counts
