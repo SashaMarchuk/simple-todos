@@ -1,71 +1,40 @@
 import { Meteor } from "meteor/meteor";
 import { Template } from "meteor/templating";
 import { ReactiveDict } from "meteor/reactive-dict";
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 import { Tasks } from "../api/tasks.js";
 
-import "./task.js";
 import "./body.html";
+import "./task.js";
+import "../lib/router.js";
+import "./todos/todosList.js";
+import "./admin/adminPanel.js";
 
-Template.body.onCreated(function bodyOnCreated() {
-  Session.setDefault("limit", {
-    limit: 2,
-  });
-  Template.instance().autorun(function () {
-    Template.instance().subscribe("tasks", Session.get("limit").limit);
-  });
-  this.state = new ReactiveDict();
-  // Meteor.subscribe("tasks");
+
+
+// As example all available Template's callbacks
+Template.body.onCreated(function () {
+  /* ... */
 });
-
-function updateSession(value) {
-  Session.set("limit", {
-    limit: Session.get("limit").limit + value,
-  });
-}
+Template.body.onRendered(function () {
+  /* ... */
+});
+Template.body.onDestroyed(function () {
+  /* ... */
+});
 Template.body.helpers({
-  tasks() {
-    const instance = Template.instance();
-    if (instance.state.get("hideCompleted")) {
-      // If hide completed is checked, filter tasks
-      return Tasks.find(
-        { checked: { $ne: true } },
-        { sort: { createdAt: -1 } }
-      );
-    }
-    // Otherwise, return all of the tasks
-
-    return Tasks.find({}, { sort: { createdAt: -1 } });
-  },
-  incompleteCount() {
-    return Tasks.find({ checked: { $ne: true } }).count();
-  },
-  isDisabled() {
-    const countAllTasks = Counts.get(`tasks`);
-    return countAllTasks == Tasks.find().count()
-      ? { disabled: "disabled" }
-      : {};
-  },
+  /* ... */
 });
 Template.body.events({
-  "submit .new-task"(event) {
-    // Prevent default browser form submit
-    event.preventDefault();
-
-    // Get value from form element
-    const target = event.target;
-    const text = target.text.value;
-
-    // Insert a task into the collection
-    Meteor.call("tasks.insert", text);
-
-    // Clear form
-    target.text.value = "";
+  "click .goToAdmin"() {
+    FlowRouter.go('/admin');
   },
-  "change .hide-completed input"(event, instance) {
-    instance.state.set("hideCompleted", event.target.checked);
+  "click .goToMain"() {
+    FlowRouter.go('/');
   },
-  "click .load-more": function () {
-    updateSession(2);
+  "click .goToTodos"() {
+    FlowRouter.go('/todos');
   },
+
 });
