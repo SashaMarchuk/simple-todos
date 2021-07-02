@@ -32,3 +32,4 @@ tmeasday:check-npm-versions
 ostrio:flow-router-extra
 session
 tmeasday:publish-counts
+kadira:blaze-layout

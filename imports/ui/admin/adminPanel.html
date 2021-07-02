@@ -1,0 +1,42 @@
+<template name="adminPanel">
+  <div class="container">
+    <header>
+      <h1>Accounts{{username}}
+        <!-- ({{incompleteCount}}) -->
+      </h1>
+
+      <!-- <label class="hide-completed">
+        <input type="checkbox" />
+        Hide Completed Tasks
+      </label> -->
+
+      {{> loginButtons}}
+
+
+      <!-- <form class="new-task">
+        <input type="text" name="text" placeholder="Type to add new tasks" />
+      </form> -->
+
+      <!-- {{/if}} -->
+
+    </header>
+    {{#if currentUser}}
+    <ul>
+      {{#each users}}
+      <li> {{username}} | {{createdAt}} | {{email}}<input type="checkbox" checked="{{ban}}"
+        class="toggle-checked-ban" /></li>
+      <!-- {{> user}} -->
+      {{/each}}
+    </ul>
+
+    <button class="load-more" name="load-more" {{ isDisabled }}>
+      Load More
+    </button>
+    {{/if}}
+  </div>
+</template>
+
+<template name="user">
+  <li> {{#if ban}}{{/if}}{{username}} | {{createdAt}} | {{email}}<input type="checkbox" checked="{{ban}}"
+      class="toggle-checked-ban" /></li>
+</template>
