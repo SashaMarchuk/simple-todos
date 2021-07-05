@@ -4,10 +4,9 @@ import { ReactiveDict } from "meteor/reactive-dict";
 
 import { Tasks } from "../../api/tasks.js";
 
-import "../task.js";
+import "../task/task.js";
 import "./todosList.html";
-
-// import "../body.html";
+import "../../lib/router.js";
 
 Template.todosList.onCreated(function todosListOnCreated() {
   Session.setDefault("limit", {
@@ -17,25 +16,24 @@ Template.todosList.onCreated(function todosListOnCreated() {
     Template.instance().subscribe("tasks", Session.get("limit").limit);
   });
   this.state = new ReactiveDict();
-  // Meteor.subscribe("tasks");
+
 });
 
-function updateSession(value) {
+const updateSession = (value) => {
   Session.set("limit", {
     limit: Session.get("limit").limit + value,
   });
 }
+
 Template.todosList.helpers({
   tasks() {
     const instance = Template.instance();
     if (instance.state.get("hideCompleted")) {
-      // If hide completed is checked, filter tasks
       return Tasks.find(
         { checked: { $ne: true } },
         { sort: { createdAt: -1 } }
       );
     }
-    // Otherwise, return all of the tasks
 
     return Tasks.find({}, { sort: { createdAt: -1 } });
   },
@@ -50,9 +48,18 @@ Template.todosList.helpers({
   },
 });
 Template.todosList.events({
-  'click .ban'() {
-    Meteor.call('tasks.remove', this._id, !this.private);
-    },
+  "submit .new-task"(event) {
+    event.preventDefault();
+
+    const target = event.target;
+    const text = target.text.value;
+
+    Meteor.call("tasks.insert", text);
+    target.text.value = "";
+  },
+  "change .hide-completed input"(event, instance) {
+    instance.state.set("hideCompleted", event.target.checked);
+  },
   "click .load-more": function () {
     updateSession(2);
   },

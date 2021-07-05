@@ -33,3 +33,4 @@ ostrio:flow-router-extra
 session
 tmeasday:publish-counts
 kadira:blaze-layout
+momentjs:moment

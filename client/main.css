@@ -29,6 +29,15 @@ header {
   padding: 20px 15px 15px 15px;
   position: relative;
 }
+nav{
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+nav button{
+  margin: 0 15px;
+  font-size: 24px;
+}
  
 #login-buttons {
   display: block;
@@ -83,7 +92,7 @@ li {
   padding: 15px;
   border-bottom: #eee solid 1px;
 }
- 
+
 li .text {
   margin-left: 10px;
 }
