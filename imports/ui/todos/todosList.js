@@ -4,7 +4,7 @@ import { ReactiveDict } from "meteor/reactive-dict";
 
 import { Tasks } from "../../api/tasks.js";
 
-import "../task.js";
+import "../task/task.js";
 import "./todosList.html";
 import "../../lib/router.js";
 

@@ -8,7 +8,7 @@ if (Meteor.isServer) {
       {
         fields: { username: -1, email: -1, createdAt: -1, ban: -1 },
         limit: limit,
-        sort: { createdAt: 1 },
+        sort: { createdAt: -1 },
       },
       Counts.publish(this, "users", Meteor.users.find({}, {fields: {}}))
     );
@@ -27,7 +27,6 @@ Meteor.methods({
   "users.setCheckedBan"(userId, setCheckedBan) {
     check(userId, String);
     check(setCheckedBan, Boolean);
-    
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }

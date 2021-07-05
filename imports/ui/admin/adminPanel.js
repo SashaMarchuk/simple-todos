@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { Template } from "meteor/templating";
 import { ReactiveDict } from "meteor/reactive-dict";
 import { User } from "../../api/users/users.js";
+
 import "./adminPanel.html";
 
 const updateSession = (value) => {
@@ -12,7 +13,7 @@ const updateSession = (value) => {
 
 Template.adminPanel.onCreated(function () {
   Session.setDefault("limit", {
-    limit: 5,
+    limit: 4,
   });
   Template.instance().autorun(function () {
     Template.instance().subscribe("userData", Session.get("limit").limit);
@@ -35,6 +36,9 @@ Template.adminPanel.helpers({
     return countAllUsers == Meteor.users.find().count()
       ? { disabled: "disabled" }
       : {};
+  },
+  createdAt(createdAt) {
+    return moment(createdAt).format("LLL");
   },
 });
 Template.adminPanel.events({

@@ -6,7 +6,7 @@ import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Tasks } from "../api/tasks.js";
 
 import "./body.html";
-import "./task.js";
+import "./task/task.js";
 import "../lib/router.js";
 import "./todos/todosList.js";
 import "./admin/adminPanel.js";

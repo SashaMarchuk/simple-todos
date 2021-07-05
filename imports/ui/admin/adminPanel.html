@@ -7,9 +7,12 @@
     {{#if currentUser}}
     <ul>
       {{#each users}}
-      <li> {{username}} | {{createdAt}} | {{email}}<input type="checkbox" checked="{{ban}}"
-          class="toggle-checked-ban" /></li>
-
+      <li>
+        {{username}} |
+        {{createdAt}} |
+        {{email}}
+        <input type="checkbox" checked="{{ban}}" class="toggle-checked-ban" />
+      </li>
       {{/each}}
     </ul>
 
@@ -20,7 +23,7 @@
   </div>
 </template>
 
-<template name="user">
+<!-- <template name="user">
   <li>{{username}} | {{createdAt}} | {{email}}<input type="checkbox" checked="{{ban}}" class="toggle-checked-ban" />
   </li>
-</template>
+</template> -->

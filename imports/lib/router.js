@@ -1,9 +1,9 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 import '../ui/body.js';
-import '../ui/task.js'
+import '../ui/task/task.js'
 import '../ui/admin/adminPanel.js';
-import '../ui/start.js';
+import '../ui/main/start.js';
 import '../ui/todos/todosList.js'
 import '../ui/error/error.js'
 
