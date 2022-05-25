@@ -1,7 +1,7 @@
 <template name="topBar">
   <nav class="topBar">
-    <li class="topBar-item" data-route="admin">Admin</li>
-    <li class="topBar-item" data-route="todo">Todo</li>
-    <li class="topBar-item" data-route="description">Description</li>
+    {{#each tab in tabsList}}
+      <li class="topBar-item {{#if activeRoute tab}} active  {{/if}}" data-route="{{ tab }}">{{ tab }}</li>
+    {{/each}}
   </nav>
 </template>

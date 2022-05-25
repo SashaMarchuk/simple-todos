@@ -1,3 +1,8 @@
 .topBar{
-  
+  &-item{
+    text-transform: capitalize;
+    &.active{
+      background: #33333350;
+    }
+  }
 }
