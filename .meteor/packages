@@ -34,3 +34,4 @@ session
 tmeasday:publish-counts
 kadira:blaze-layout
 momentjs:moment
+aldeed:simple-schema

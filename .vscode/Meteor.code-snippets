@@ -1,0 +1,516 @@
+{
+  // Already added: 
+  // -Import All collection which we have
+  // const tmpl = Template.instance()
+  // Meteor.userId()
+  // TemplateVar set/get (js)
+  // Template.templateName.onCreated(function () {});
+  // Template.templateName.onRendered(function () {});
+  // Template.templateName.onDestroyed(function () {});
+  // Template.templateName.helpers({});
+  // Template.templateName.events({});
+  ////////////***HTML***
+  //unless
+  // If
+  // If Else
+  // <template>
+  // {{each}}
+  // {{with}}
+  // TemplateVar.get
+  // helper clipboard
+  /////////////***HTML***
+
+  // HOW TO DO? Read this:
+  // https://code.visualstudio.com/docs/editor/userdefinedsnippets
+
+	// Place your knameit-meteor workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+
+
+  // *** START JS ***
+
+  "console.log()": {
+    "scope": "javascript,typescript",
+		"prefix": "log",
+		"body": [
+			"console.log(${1:$CLIPBOARD});",
+		],
+		"description": "Console log"
+  },
+  "Template on Created": {
+    "scope": "javascript,typescript",
+		"prefix": "tcreate",
+		"body": [
+			"Template.${1:$CLIPBOARD}.onCreated(function () {${2:$CLIPBOARD}});",
+		],
+		"description": "Template on Created"
+  },
+  "Template on Rendered": {
+    "scope": "javascript,typescript",
+		"prefix": "trendered",
+		"body": [
+			"Template.${1:$CLIPBOARD}.onRendered(function () {${2:$CLIPBOARD}});",
+		],
+		"description": "Template on Rendered"
+  },
+  "Template on Destroyed": {
+    "scope": "javascript,typescript",
+		"prefix": "tdestroyed",
+		"body": [
+			"Template.${1:$CLIPBOARD}.onDestroyed(function () {${2:$CLIPBOARD}});",
+		],
+		"description": "Template on Destroyed"
+  },
+  "Template Helper": {
+    "scope": "javascript,typescript",
+		"prefix": "thelper",
+		"body": [
+			"Template.${1:$CLIPBOARD}.helpers({\n\t${2:$CLIPBOARD}(${3:arg}) {$4}\n});",
+		],
+		"description": "Template Helper"
+  },
+  "Template Events": {
+    "scope": "javascript,typescript",
+		"prefix": "tevents",
+		"body": [
+			"Template.${1:$CLIPBOARD}.events({\n\t'${2:click} .${3:$CLIPBOARD}'(e, tmpl) {\n\t\t$4\n});",
+		],
+		"description": "Template Events"
+  },
+  "Template Var Set": {
+    "scope": "javascript,typescript",
+		"prefix": "tset",
+		"body": [
+			"TemplateVar.set('${1:$CLIPBOARD}', ${2:$CLIPBOARD});",
+		],
+		"description": "Template Var Set"
+  },
+  "Template Var Get": {
+    "scope": "javascript,typescript",
+		"prefix": "tget",
+		"body": [
+			"TemplateVar.get('${1:$CLIPBOARD}');",
+		],
+		"description": "Template Var Get"
+  },
+  "Const tmpl": {
+    "scope": "javascript,typescript",
+		"prefix": "tmplc",
+		"body": [
+			"const tmpl = Template.instance();",
+		],
+		"description": "Var for Template.instance()"
+  },
+  "Const tmpl this": {
+    "scope": "javascript,typescript",
+		"prefix": "tmpls",
+		"body": [
+			"const tmpl = this;",
+		],
+		"description": "Var for this(Template.instance())"
+  },
+  "Event Prevent Default": {
+    "scope": "javascript,typescript",
+		"prefix": "e.preventDefault();",
+		"body": [
+			"e.preventDefault();",
+		],
+		"description": "e.preventDefault();"
+  },
+  "Const userId": {
+    "scope": "javascript,typescript",
+		"prefix": "cuser",
+		"body": [
+			"const userId = Meteor.userId();",
+		],
+		"description": "Const userId"
+  },
+  "Meteor userId": {
+    "scope": "javascript,typescript",
+		"prefix": "userId",
+		"body": [
+			"Meteor.userId();",
+		],
+		"description": "Meteor userId"
+  },
+  "if const Meteor userId": {
+    "scope": "javascript,typescript",
+		"prefix": "ifuserId",
+		"body": [
+			"const userId = Meteor.userId();\nif (userId) {\n\t${1:$CLIPBOARD}\n}",
+		],
+		"description": "Meteor userId"
+  },
+  "Const userId if": {
+    "scope": "javascript,typescript",
+		"prefix": "cuserif",
+		"body": [
+			"const userId = Meteor.userId();\nif (userId) {\n\t${1:$CLIPBOARD}\n};",
+		],
+		"description": "Const userId with if"
+  },
+  "Const FlowRouter getParam": {
+    "scope": "javascript,typescript",
+		"prefix": "cfget",
+		"body": [
+      "const ${1:$CLIPBOARD} = FlowRouter.getParam('${1:$CLIPBOARD}');",
+		],
+		"description": "Const FlowRouter getParam"
+  },
+
+  // *** START IMPORTS ***
+    // // *** START COLLECTIONS ***
+    "Import Meteor": {
+      "scope": "javascript,typescript",
+      "prefix": "iMeteor",
+      "body": [
+        "import { Meteor } from 'meteor/meteor';",
+      ],
+      "description": "Import Meteor"
+    },
+    "Import Users": {
+      "scope": "javascript,typescript",
+      "prefix": "iUsers",
+      "body": [
+        "import { Users } from '/imports/api/users/users';",
+      ],
+      "description": "Import Users Collection"
+    },
+    "Import Clients": {
+      "scope": "javascript,typescript",
+      "prefix": "iClients",
+      "body": [
+        "import { Clients } from '/imports/api/clients/clients';",
+      ],
+      "description": "Import Clients Collection"
+    },
+    "Import Chats": {
+      "scope": "javascript,typescript",
+      "prefix": "iChats",
+      "body": [
+        "import { Chats } from '/imports/api/chats/chats';",
+      ],
+      "description": "Import Chats Collection"
+    },
+    "Import Connects": {
+      "scope": "javascript,typescript",
+      "prefix": "iConnects",
+      "body": [
+        "import { Connects } from '/imports/api/connects/connects';",
+      ],
+      "description": "Import Connects Collection"
+    },
+    "Import Looks": {
+      "scope": "javascript,typescript",
+      "prefix": "iLooks",
+      "body": [
+        "import { Looks } from '/imports/api/looks/looks';",
+      ],
+      "description": "Import Looks Collection"
+    },
+    "Import Logs": {
+      "scope": "javascript,typescript",
+      "prefix": "iLogs",
+      "body": [
+        "import { Logs } from '/imports/api/logs/logs';",
+      ],
+      "description": "Import Looks Collection"
+    },
+    "Import Tags": {
+      "scope": "javascript,typescript",
+      "prefix": "iTags",
+      "body": [
+        "import { Tags } from '/imports/api/tags/tags';",
+      ],
+      "description": "Import Tags Collection"
+    },
+    "Import Notifications": {
+      "scope": "javascript,typescript",
+      "prefix": "iNotifications",
+      "body": [
+        "import { Notifications } from '/imports/api/notifications/notifications';",
+      ],
+      "description": "Import Notifications Collection"
+    },
+    "Import Products": {
+      "scope": "javascript,typescript",
+      "prefix": "iProducts",
+      "body": [
+        "import { Products } from '/imports/api/products/products';",
+      ],
+      "description": "Import Products Collection"
+    },
+    "Import Projects": {
+      "scope": "javascript,typescript",
+      "prefix": "iProjects",
+      "body": [
+        "import { Projects } from '/imports/api/projects/projects';",
+      ],
+      "description": "Import Projects Collection"
+    },
+    "Import Searches": {
+      "scope": "javascript,typescript",
+      "prefix": "iSearches",
+      "body": [
+        "import { Searches } from '/imports/api/search/search';",
+      ],
+      "description": "Import Searches Collection"
+    },
+    "Import SearchResults": {
+      "scope": "javascript,typescript",
+      "prefix": "iSearchResults",
+      "body": [
+        "import { SearchResults } from '/imports/api/searchResults/searchResults';",
+      ],
+      "description": "Import SearchResults Collection"
+    },
+    "Import TasteChanges": {
+      "scope": "javascript,typescript",
+      "prefix": "iTasteChanges",
+      "body": [
+        "import { TasteChanges } from '/imports/api/tasteChanges/tasteChanges';",
+      ],
+      "description": "Import TasteChanges Collection"
+    },
+    "Import Tastes": {
+      "scope": "javascript,typescript",
+      "prefix": "iTastes",
+      "body": [
+        "import { Tastes } from '/imports/api/tastes/tastes';",
+      ],
+      "description": "Import Tastes Collection"
+    },
+    "Import Tracking": {
+      "scope": "javascript,typescript",
+      "prefix": "iTracking",
+      "body": [
+        "import { Tracking } from '/imports/api/tracking/tracking';",
+      ],
+      "description": "Import Tracking Collection"
+    },
+    "Import Subscriptions": {
+      "scope": "javascript,typescript",
+      "prefix": "iSubscriptions",
+      "body": [
+        "import { Subscriptions } from '/imports/api/subscriptions/subscription';",
+      ],
+      "description": "Import Subscriptions Collection"
+    },
+    "Import Messages": {
+      "scope": "javascript,typescript",
+      "prefix": "iMessages",
+      "body": [
+        "import { Messages } from '/imports/api/messages/messages';",
+      ],
+      "description": "Import Messages Collection"
+    },
+    "Import Images": {
+      "scope": "javascript,typescript",
+      "prefix": "iImages",
+      "body": [
+        "import { Images } from '/imports/api/images/images';",
+      ],
+      "description": "Import Images Collection"
+    },
+    "Import Votes": {
+      "scope": "javascript,typescript",
+      "prefix": "iVotes",
+      "body": [
+        "import { Votes } from '/imports/api/votes/votes';",
+      ],
+      "description": "Import Votes Collection"
+    },
+    "Import Charges": {
+      "scope": "javascript,typescript",
+      "prefix": "iCharges",
+      "body": [
+        "import { Charges } from '/imports/api/charges/charges';",
+      ],
+      "description": "Import Charges Collection"
+    },
+    "Import Fonts": {
+      "scope": "javascript,typescript",
+      "prefix": "iFonts",
+      "body": [
+        "import { Fonts } from '/imports/api/fonts/fonts';",
+      ],
+      "description": "Import Fonts Collection"
+    },
+    "Import Clipboard": {
+      "scope": "javascript,typescript",
+      "prefix": "iClipboard",
+      "body": [
+        "import { Clipboard } from '/imports/api/clipboard/clipboard';",
+      ],
+      "description": "Import Clipboard Collection"
+    },
+    "Import Snapshots": {
+      "scope": "javascript,typescript",
+      "prefix": "iSnapshots",
+      "body": [
+        "import { Snapshots } from '/imports/api/snapshots/snapshots';",
+      ],
+      "description": "Import Snapshots Collection"
+    },
+
+    // // *** END COLLECTIONS ***
+
+    // // *** START IMPORT FILE *** 
+
+    "Import Loggers": {
+      "scope": "javascript,typescript",
+      "prefix": "iLogger",
+      "body": [
+        "import Logger from '/imports/scripts/common/logger';",
+      ],
+      "description": "Import Logger"
+    },
+    "Import Constants file": {
+      "scope": "javascript,typescript",
+      "prefix": "iConstants",
+      "body": [
+        "import { ${1:$CLIPBOARD} } from '/imports/scripts/common/constants';",
+      ],
+      "description": "Import Constants file"
+    },
+    "Import Functions file": {
+      "scope": "javascript,typescript",
+      "prefix": "iFunctions",
+      "body": [
+        "import { ${1:$CLIPBOARD} } from '/imports/scripts/common/functions';",
+      ],
+      "description": "Import Functions file"
+    },
+    "Import Methods file": {
+      "scope": "javascript,typescript",
+      "prefix": "iMethods",
+      "body": [
+        "import { ${1:$CLIPBOARD} } from '/imports/scripts/common/methods';",
+      ],
+      "description": "Import Methods file"
+    },
+    "Import Schemas file": {
+      "scope": "javascript,typescript",
+      "prefix": "iSchemas",
+      "body": [
+        "import { ${1:$CLIPBOARD} } from '/imports/scripts/common/schemas';",
+      ],
+      "description": "Import Schemas file"
+    },
+    // // *** END IMPORT FILE *** 
+
+
+    // // *** START IMPORT TOOLS *** 
+
+    "Import check": {
+      "scope": "javascript,typescript",
+      "prefix": "icheck",
+      "body": [
+        "import { check } from 'meteor/check';",
+      ],
+      "description": "Import Check tool"
+    },
+    "Import check Match": {
+      "scope": "javascript,typescript",
+      "prefix": "icheckm",
+      "body": [
+        "import { check, Match } from 'meteor/check';",
+      ],
+      "description": "Import Check & Match tool"
+    },
+
+    // // *** END IMPORT TOOLS *** 
+
+  // *** END IMPORTS ***
+
+  // *** END JS ***
+
+
+  // *** START HTML ***
+  "Blaze unless Statment": {
+    "scope": "html",
+		"prefix": "hun",
+		"body": [
+			"{{#unless ${1:$CLIPBOARD}}}\n\t${2:$CLIPBOARD}\n{{/unless}}",
+		],
+		"description": "Blaze Unless Statment"
+  },
+  "Blaze If Statment": {
+    "scope": "html",
+		"prefix": "hif",
+		"body": [
+			"{{#if ${1:$CLIPBOARD}}}\n\t${2:$CLIPBOARD}\n{{/if}}",
+		],
+		"description": "Blaze If Statment"
+  },
+  "Blaze If Else Statment": {
+    "scope": "html",
+		"prefix": "hife",
+		"body": [
+			"{{#if ${1:$CLIPBOARD}}}\n\t${2:$CLIPBOARD}\n{{else}}\n\t${3:$CLIPBOARD}\n{{/if}}",
+		],
+		"description": "Blaze If Else Statment"
+  },
+  "Blaze <template> tag": {
+    "scope": "html",
+		"prefix": "htmpl",
+		"body": [
+			"<template name='${1:$CLIPBOARD}'>\n\t${2:$CLIPBOARD}\n</template>",
+		],
+		"description": "Creating template tag in html with name attribute"
+  },
+  "Blaze <template> tag andd inner tag": {
+    "scope": "html",
+		"prefix": "htmpls",
+		"body": [
+			"<template name='${1:$CLIPBOARD}'>\n\t<${2:section} class='${1:$CLIPBOARD}'>\n\t\t$3\n\t</section>\n</template>",
+		],
+		"description": "Creating template tag in html with name attribute"
+  },
+  "Blaze {{each}}": {
+    "scope": "html",
+		"prefix": "heach",
+		"body": [
+			"{{#each ${1:$CLIPBOARD}}}\n\t${2:$CLIPBOARD}\n{{/each}}",
+		],
+		"description": "Blaze {{each}}"
+  },
+  "Blaze {{with}}": {
+    "scope": "html",
+		"prefix": "hwith",
+		"body": [
+			"{{#with ${1:$CLIPBOARD}}}\n\t${2:$CLIPBOARD}\n{{/with}}",
+		],
+		"description": "Blaze {{with}}"
+  },
+  "Blaze {{let}}": {
+    "scope": "html",
+		"prefix": "hlet",
+		"body": [
+			"{{#let ${1:$CLIPBOARD}=${2:$CLIPBOARD}}}\n\t${3:$CLIPBOARD}\n{{/let}}",
+		],
+		"description": "Blaze {{with}}"
+  },
+  "Blaze TemplateVar.get": {
+    "scope": "html",
+		"prefix": "htget",
+		"body": [
+			"TemplateVar.get '${1:$CLIPBOARD}'",
+		],
+		"description": "Blaze TemplateVar.get"
+  },
+  "Blaze helper clipboard": {
+    "scope": "html",
+		"prefix": "hhelp",
+		"body": [
+			"{{${1:$CLIPBOARD}}}",
+		],
+		"description": "Blaze helper clipboard"
+  },
+  // *** END HTML ***
+}

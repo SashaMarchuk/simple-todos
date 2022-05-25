@@ -5,6 +5,7 @@ accounts-password@1.7.1
 accounts-ui@1.3.2
 accounts-ui-unstyled@1.4.3
 aldeed:collection2-core@2.1.2
+aldeed:simple-schema@1.5.4
 allow-deny@1.1.0
 autoupdate@1.7.0
 babel-compiler@7.6.2
@@ -51,6 +52,7 @@ less@3.0.2
 livedata@1.0.18
 localstorage@1.2.0
 logging@1.2.0
+mdg:validation-error@0.2.0
 meteor@1.9.3
 meteor-base@1.4.0
 meteortesting:browser-tests@1.3.4

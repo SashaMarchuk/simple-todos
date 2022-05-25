@@ -1,2 +1,2 @@
-import '../imports/api/tasks.js';
-import '../imports/api/users/users.js';
+import '../imports/api/tasks/tasks';
+import '../imports/api/users/users';

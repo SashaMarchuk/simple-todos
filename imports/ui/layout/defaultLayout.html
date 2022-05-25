@@ -1,0 +1,9 @@
+<template name="defaultLayout">
+  <main class="defaultLayout">
+    {{> topBar}}
+
+    {{#if main}}
+      {{> Template.dynamic template=main}}
+    {{/if}}
+  </main>
+</template>
