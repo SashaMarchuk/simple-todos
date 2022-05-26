@@ -6,19 +6,8 @@
     </header>
     {{#if currentUser}}
     <ul>
-      {{#each users}}
-      <li>
-        {{username}} |
-        {{createdAt}} |
-        {{email}}
-        <input type="checkbox" checked="{{ban}}" class="toggle-checked-ban" />
-      </li>
-      {{/each}}
+      {{#if users}} {{#each user in users}} {{> userItem userData=user}} {{/each}} {{/if}}
     </ul>
-
-    <button class="load-more" name="load-more" {{ isDisabled }}>
-      Load More
-    </button>
     {{/if}}
   </div>
 </template>
