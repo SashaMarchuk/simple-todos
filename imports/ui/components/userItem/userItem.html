@@ -1,0 +1,15 @@
+<template name="userItem">
+  <li class="userItem">
+    <div class="userItem__name">{{ userData.username }}</div>
+    <div class="userItem__created-at">{{ formatDate userData.createdAt }}</div>
+    <label for="user-status"
+      >Ban status
+      <input
+        class="userItem__status"
+        type="checkbox"
+        name="user-status"
+        id="user-status"
+        checked="{{ userData.ban }}" />
+    </label>
+  </li>
+</template>
