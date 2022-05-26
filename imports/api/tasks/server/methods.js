@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-// import { check } from 'meteor/check';
+import { check } from 'meteor/check';
 import { Tasks } from "../tasks";
 
 Meteor.methods({
@@ -10,7 +10,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.insert({
+    return Tasks.insert({
       text,
       createdAt: new Date(),
       owner: this.userId,
@@ -26,7 +26,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.remove(taskId);
+    return Tasks.remove(taskId);
   },
   "tasks.setChecked"(taskId, setChecked) {
     check(taskId, String);
@@ -38,7 +38,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.update(taskId, { $set: { checked: setChecked } });
+    return Tasks.update(taskId, { $set: { checked: setChecked } });
   },
   "tasks.setPrivate"(taskId, setToPrivate) {
     check(taskId, String);
