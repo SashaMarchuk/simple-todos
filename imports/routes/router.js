@@ -5,33 +5,30 @@ import '../ui/layout/defaultLayout'
 import '../ui/pages/adminPage/adminPage'
 import '../ui/pages/errorPage/errorPage'
 import '../ui/pages/todoPage/todoPage'
+import '../ui/pages/descriptionPage/descriptionPage'
 
 FlowRouter.route('/', {
   name: 'startPage',
   action() {
-    FlowRouter.go('/main');
+    FlowRouter.go('/description');
   }
 });
 
-FlowRouter.route('/main', {
-  name: 'main',
+FlowRouter.route('/description', {
+  name: 'description',
   subscriptions: () => {},
   action: function () {
-    console.log('here (main)');
-    console.log('BlazeLayout: ', BlazeLayout);
     BlazeLayout.render('defaultLayout', {
-      main: 'errorPage'
+      main: 'descriptionPage'
     });
-    console.log('after here (main)');
-    // if (!Meteor.userId()) {
-    // } else {
-    //   FlowRouter.go('/dashboard');
-    // }
   }
 });
 
 FlowRouter.route('/admin', {
   name: 'admin',
+  subscriptions: function (query, params) {
+    this.register('userData', Meteor.subscribe('userData'));
+  },
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'adminPage'
@@ -41,6 +38,9 @@ FlowRouter.route('/admin', {
 
 FlowRouter.route('/todo', {
   name: 'todo',
+  subscriptions: function (query, params) {
+    this.register('allTasks', Meteor.subscribe('allTasks'));
+  },
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'todoPage'
