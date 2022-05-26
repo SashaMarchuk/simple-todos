@@ -1,9 +1,7 @@
-import { Template } from "meteor/templating";
-import "./errorPage.html";
+import { Template } from 'meteor/templating';
+import './errorPage.html';
 
-Template.errorPage.onCreated(function () {
-  console.log("errorPage");
-});
+Template.errorPage.onCreated(function () {});
 Template.errorPage.onRendered(function () {
   /* ... */
 });
