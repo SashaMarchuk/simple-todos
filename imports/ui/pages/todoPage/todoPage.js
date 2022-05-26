@@ -1,66 +1,46 @@
-import { Meteor } from "meteor/meteor";
-import { Template } from "meteor/templating";
-import { ReactiveDict } from "meteor/reactive-dict";
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { Tasks } from "../../../api/tasks/tasks";
+import { Tasks } from '../../../api/tasks/tasks';
 
+import './todoPage.html';
 
-import "./todoPage.html";
-
+import '../../components/taskItem/taskItem';
 
 Template.todoPage.onCreated(function () {
-  Session.setDefault("limit", {
-    limit: 2,
-  });
-  Template.instance().autorun(function () {
-    Template.instance().subscribe("tasks", Session.get("limit").limit);
-  });
-  this.state = new ReactiveDict();
-
+  TemplateVar.set('hideCompleted', false);
 });
-
-const updateSession = (value) => {
-  Session.set("limit", {
-    limit: Session.get("limit").limit + value,
-  });
-}
 
 Template.todoPage.helpers({
   tasks() {
-    const instance = Template.instance();
-    if (instance.state.get("hideCompleted")) {
-      return Tasks.find(
-        { checked: { $ne: true } },
-        { sort: { createdAt: -1 } }
-      );
-    }
-
-    return Tasks.find({}, { sort: { createdAt: -1 } });
+    const hideCompleted = TemplateVar.get('hideCompleted');
+    const query = { ...(hideCompleted && { checked: { $ne: true } }) };
+    const options = { sort: { createdAt: -1 } };
+    return Tasks.find(query, options);
   },
   incompleteCount() {
     return Tasks.find({ checked: { $ne: true } }).count();
-  },
-  isDisabled() {
-    const countAllTasks = Counts.get(`tasks`);
-    return countAllTasks == Tasks.find().count()
-      ? { disabled: "disabled" }
-      : {};
-  },
+  }
 });
 Template.todoPage.events({
-  "submit .new-task"(event) {
-    event.preventDefault();
+  'submit .new-task'(e, tmpl) {
+    e.preventDefault();
+    const target = e.target;
+    const text = e.target.text.value;
 
-    const target = event.target;
-    const text = target.text.value;
-
-    Meteor.call("tasks.insert", text);
-    target.text.value = "";
+    e.target.text.disabled = true;
+    Meteor.call('tasks.insert', text, (err, res) => {
+      if (err) {
+        alert(err.reason || err.method || err.error);
+        e.target.checked = !checked;
+      }
+      e.target.text.disabled = false;
+      target.text.value = '';
+    });
   },
-  "change .hide-completed input"(event, instance) {
-    instance.state.set("hideCompleted", event.target.checked);
-  },
-  "click .load-more": function () {
-    updateSession(2);
-  },
+  'change .hide-completed input'(e, tmpl) {
+    const { checked } = e.target;
+    TemplateVar.set('hideCompleted', checked);
+  }
 });
