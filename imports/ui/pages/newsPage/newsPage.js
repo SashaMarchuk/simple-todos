@@ -14,7 +14,7 @@ Template.newsPage.onCreated(function () {
 Template.newsPage.helpers({
   news() {
     const query = {};
-    const options = { sort: { date: -1 }};
+    const options = { sort: { date: -1, createdAt: -1 }};
     return News.find(query, options);
   }
 });
