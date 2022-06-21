@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Votes } from '../../votes/votes';
+import { publishComposite } from 'meteor/reywood:publish-composite';
 
 import { Tasks } from '../tasks';
 
