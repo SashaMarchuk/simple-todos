@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 body {
   font-family: sans-serif;
   background-color: #315481;
@@ -139,4 +141,12 @@ input[type=checkbox][disabled] {
   .new-task input {
     padding-bottom: 5px;
   }
+}
+
+button{
+  border-color: black;
+}
+button.active{
+  background: #33333350;
+  border-color: #315481;
 }
