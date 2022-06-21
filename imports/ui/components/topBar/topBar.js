@@ -9,7 +9,7 @@ Template.topBar.helpers({
     return tab && FlowRouter.getRouteName() === tab;
   },
   tabsList() {
-    return ['admin', 'todo', 'description', 'news']
+    return ['admin', 'news']
   }
 });
 

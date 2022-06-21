@@ -49,7 +49,6 @@ Template.newsItem.events({
       const { _id } = this;
       TemplateVar.set('voteStatus', true);
       const options = { type, newsId: _id, createdAt: new Date(), userId, isNews: true };
-      console.log('options: ', options);
       Meteor.call('setVote', options, (err, res) => {
         err && console.error('Error on set vote', err);
         if (res) {

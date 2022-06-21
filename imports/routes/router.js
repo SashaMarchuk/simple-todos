@@ -11,7 +11,7 @@ import '../ui/pages/newsPage/newsPage'
 FlowRouter.route('/', {
   name: 'startPage',
   action() {
-    FlowRouter.go('/description');
+    FlowRouter.go('/admin');
   }
 });
 
@@ -55,9 +55,12 @@ FlowRouter.route('/news', {
     this.register('news', Meteor.subscribe('news'));
   },
   action() {
-    BlazeLayout.render('defaultLayout', {
-      main: 'newsPage'
-    });
+    const userId = Meteor.userId();
+    if (userId) {
+      BlazeLayout.render('defaultLayout', {
+        main: 'newsPage'
+      });
+    } else FlowRouter.go('admin')
   }
 });
 
