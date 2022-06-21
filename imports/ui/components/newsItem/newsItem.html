@@ -11,18 +11,21 @@
       <li class="list-group-item">{{formatDate date 'D MMMM YYYY'}}</li>
       <li class="list-group-item mx-auto">
         <a
-          class="btn btn-primary like mx-3 {{voteByNews _id 'like'}} vote"
-          data-type="like"
-          disabled="{{ TemplateVar.get 'voteStatus' }}"
-          ><i class="fa fa-thumbs-o-up"></i
-        ></a>
-        <a
-          class="btn btn-primary dislike mx-3 {{voteByNews _id 'dislike'}} vote"
+        class="btn btn-outline-primary like mx-3 {{voteByNews _id 'like'}} vote"
+        data-type="like"
+        disabled="{{ TemplateVar.get 'voteStatus' }}"
+        ><i class="fa fa-thumbs-o-up"></i
+          ></a>
+          <a
+          class="btn btn-outline-primary dislike mx-3 {{voteByNews _id 'dislike'}} vote"
           data-type="dislike"
           disabled="{{ TemplateVar.get 'voteStatus' }}"
           ><i class="fa fa-thumbs-o-down"></i
-        ></a>
-      </li>
+            ></a>
+          </li>
+          {{#if TemplateVar.get 'notification'}}
+            <a href="{{TemplateVar.get 'notification'}}" class="card-link mx-auto p-2" target="_blank">See Another post from this author</a>
+          {{/if}}
     </ul>
     <div class="card-body">
       <a href="{{titleLink}}" class="card-link" target="_blank">Card link</a>

@@ -7,8 +7,8 @@ import './newsItem.html';
 
 Template.newsItem.onCreated(function () {
   TemplateVar.set('voteStatus', false);
+  TemplateVar.set('notification', false);
   const tmpl = Template.instance();
-  console.log('News: ', tmpl.data?.news);
 });
 Template.newsItem.helpers({
   isOwner(ownerId) {
@@ -44,18 +44,20 @@ Template.newsItem.events({
   },
   'click .vote'(e, tmpl) {
     const userId = Meteor.userId();
-    console.log('this: ', this);
     if (userId) {
       const { type } = e.currentTarget.dataset;
-      console.log('type: ', type);
       const { _id } = this;
-      console.log('_id: ', _id);
       TemplateVar.set('voteStatus', true);
-      const options = { type, newsId: _id, createdAt: new Date(), userId };
+      const options = { type, newsId: _id, createdAt: new Date(), userId, isNews: true };
       console.log('options: ', options);
       Meteor.call('setVote', options, (err, res) => {
         err && console.error('Error on set vote', err);
-        console.log(res);
+        if (res) {
+          TemplateVar.set(tmpl, 'notification', res);
+          setTimeout(() => {
+            TemplateVar.set(tmpl, 'notification', false);
+          }, 5000);
+        }
         TemplateVar.set(tmpl, 'voteStatus', false);
       });
     }
