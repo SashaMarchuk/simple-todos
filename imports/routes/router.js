@@ -6,6 +6,7 @@ import '../ui/pages/adminPage/adminPage'
 import '../ui/pages/errorPage/errorPage'
 import '../ui/pages/todoPage/todoPage'
 import '../ui/pages/descriptionPage/descriptionPage'
+import '../ui/pages/newsPage/newsPage'
 
 FlowRouter.route('/', {
   name: 'startPage',
@@ -44,6 +45,18 @@ FlowRouter.route('/todo', {
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'todoPage'
+    });
+  }
+});
+
+FlowRouter.route('/news', {
+  name: 'news',
+  subscriptions: function (query, params) {
+    this.register('news', Meteor.subscribe('news'));
+  },
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'newsPage'
     });
   }
 });
