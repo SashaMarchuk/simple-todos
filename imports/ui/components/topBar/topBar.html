@@ -1,7 +1,9 @@
 <template name="topBar">
-  <nav class="topBar">
+  <nav class="nav nav-pills nav-fill gap-2 p-1 small bg-white border rounded-5 shadow-sm">
     {{#each tab in tabsList}}
-      <li class="topBar-item {{#if activeRoute tab}} active  {{/if}}" data-route="{{ tab }}">{{ tab }}</li>
+    <li class="nav-item" data-route="{{ tab }}">
+      <a href="/{{tab}}" class="nav-link {{#if activeRoute tab}} active {{/if}}"> {{tab}} </a>
+    </li>
     {{/each}}
   </nav>
 </template>

@@ -15,11 +15,8 @@ if (Meteor.isServer) {
   });
   Accounts.validateLoginAttempt(function (info) {
     const user = info.user;
-    if (user.ban) {
-      throw new Meteor.Error(403, "You are banned");
-    } else {
-      return true;
-    }
+    if (user.ban) throw new Meteor.Error(403, "You are banned");
+    else return true;
   });
 }
 

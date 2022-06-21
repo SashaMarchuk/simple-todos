@@ -1,11 +1,23 @@
 import { Meteor } from 'meteor/meteor';
+import { Votes } from '../../votes/votes';
 
-import { Tasks } from "../tasks";
+import { Tasks } from '../tasks';
 
-Meteor.publish("allTasks", function (limit) {
-  const query = {
-    $or: [{ private: { $ne: true } }, { owner: this.userId }],
+Meteor.publishComposite('allTasks', function () {
+  return {
+    find() {
+      const query = {
+        $or: [{ private: { $ne: true } }, { owner: this.userId }]
+      };
+      const options = {};
+      return Tasks.find(query, options);
+    },
+    children: [
+      {
+        find(task) {
+          return Votes.find({ taskId: task._id });
+        }
+      }
+    ]
   };
-  const options = { limit: limit || 10 };
-  return Tasks.find(query, options);
 });

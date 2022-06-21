@@ -9,13 +9,13 @@ Template.topBar.helpers({
     return tab && FlowRouter.getRouteName() === tab;
   },
   tabsList() {
-    return ['admin', 'todo', 'description']
+    return ['admin', 'todo', 'description', 'news']
   }
 });
 
 
 Template.topBar.events({
-  'click .topBar-item'(e ,tmpl) {
+  'click .nav-link'(e ,tmpl) {
     const { route } = e.target.dataset;
     return route && FlowRouter.go(`/${route}`)
   }

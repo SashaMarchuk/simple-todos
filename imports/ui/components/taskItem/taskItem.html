@@ -6,7 +6,19 @@
 
     {{#if isOwner taskData.owner}}
     <button class="toggle-private">{{#if taskData.private}} Private {{else}} Public {{/if}}</button>
-    {{/if}}
+
+    {{/if}} {{#unless isOwner taskData.owner}}
+    <button
+      type="button"
+      class="fa fa-thumbs-up vote {{voteByTask taskData._id 'like'}}"
+      data-type="like"
+      disabled="{{ TemplateVar.get 'voteStatus' }}"></button>
+    <button
+      type="button"
+      class="fa fa-thumbs-down vote {{voteByTask taskData._id 'dislike'}}"
+      data-type="dislike"
+      disabled="{{ TemplateVar.get 'voteStatus' }}"></button>
+    {{/unless}}
 
     <span class="text"><strong>{{ taskData.username }}</strong> - {{ taskData.text }}</span>
   </li>
