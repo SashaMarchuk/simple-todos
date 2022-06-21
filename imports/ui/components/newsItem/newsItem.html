@@ -1,0 +1,33 @@
+<template name="newsItem">
+  {{#with news}}
+  <div class="card" style="margin: auto; width: 18rem">
+    <img class="card-img-top" src="{{imageLink}}" alt="{{imageAlt}}" />
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <p class="card-text">{{description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">by {{author}}</li>
+      <li class="list-group-item">{{formatDate date 'D MMMM YYYY'}}</li>
+      <li class="list-group-item mx-auto">
+        <a
+          class="btn btn-primary like mx-3 {{voteByNews _id 'like'}} vote"
+          data-type="like"
+          disabled="{{ TemplateVar.get 'voteStatus' }}"
+          ><i class="fa fa-thumbs-o-up"></i
+        ></a>
+        <a
+          class="btn btn-primary dislike mx-3 {{voteByNews _id 'dislike'}} vote"
+          data-type="dislike"
+          disabled="{{ TemplateVar.get 'voteStatus' }}"
+          ><i class="fa fa-thumbs-o-down"></i
+        ></a>
+      </li>
+    </ul>
+    <div class="card-body">
+      <a href="{{titleLink}}" class="card-link" target="_blank">Card link</a>
+      <a href="{{authorLink}}" class="card-link" target="_blank">Author link</a>
+    </div>
+  </div>
+  {{/with}}
+</template>
